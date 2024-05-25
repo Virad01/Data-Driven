@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="upload-section">
+            <input type="file" id="file-input">
+            <label for="file-input">Upload CSV File</label>
+            <div id="progress-bar"></div>
+        </div>
+        <div class="data-display-section">
+            <table id="data-table">
+                <!-- Table headers will be populated dynamically -->
+            </table>
+            <div id="pagination">
+                <!-- Pagination buttons will be populated dynamically -->
+            </div>
+        </div>
+        <div class="pricing-calculator-section">
+            <h2>Subscription Pricing Calculator</h2>
+            <div id="subscription-price"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle CSV file upload
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const csv = e.target.result;
+                const data = csv.split('\n').map(row => row.split(','));
+
+                // Display data in table
+                const table = document.getElementById('data-table');
+                table.innerHTML = ''; // Clear existing table content
+
+                // Add table headers
+                const headers = data[0];
+                const headerRow = document.createElement('tr');
+                headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    headerRow.appendChild(th);
+                });
+                table.appendChild(headerRow);
+
+                // Add table data rows
+                for (let i = 1; i < data.length; i++) {
+                    const rowData = data[i];
+                    const row = document.createElement('tr');
+                    rowData.forEach(cellData => {
+                        const td = document.createElement('td');
+                        td.textContent = cellData;
+                        row.appendChild(td);
+                    });
+                    table.appendChild(row);
+                }
+
+                // Calculate subscription price
+                const creditScore = parseInt(data[1][2]); // Assuming credit score is in the second row
+                const creditLines = parseInt(data[1][3]); // Assuming credit lines is in the third row
+                const basePrice = 50; // Example base price
+                const pricePerCreditLine = 10; // Example price per credit line
+                const pricePerCreditScorePoint = 5; // Example price per credit score point
+
+                const subscriptionPrice = basePrice + (pricePerCreditLine * creditLines) + (pricePerCreditScorePoint * creditScore);
+                const subscriptionPriceElement = document.getElementById('subscription-price');
+                subscriptionPriceElement.textContent = `Subscription Price: $${subscriptionPrice}`;
+            };
+
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>

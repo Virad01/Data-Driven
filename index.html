@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data-Driven Web Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Data-Driven Web Application</h1>
+        <div class="upload-section">
+            <h2>Upload CSV File</h2>
+            <input type="file" id="csvFileInput">
+            <button id="uploadBtn">Upload</button>
+            <div id="uploadProgress"></div>
+        </div>
+        <div id="dataDisplay"></div>
+        <div id="pagination"></div>
+        <div id="subscriptionCalculator">
+            <h2>Subscription Pricing Calculator</h2>
+            <p>Base Price: $10</p>
+            <p>Price per Credit Line: $5</p>
+            <p>Price per Credit Score Point: $2</p>
+            <p>Total Subscription Price: <span id="subscriptionPrice"></span></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

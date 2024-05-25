@@ -1,0 +1,10 @@
+Email,Name,CreditScore,CreditLines,MaskedPhoneNumber
+user1@example.com,John Smith,700,3,***-***-1234
+user2@example.com,Jane Johnson,650,2,***-***-5678
+user3@example.com,Alice Williams,750,4,***-***-9012
+user4@example.com,Bob Jones,600,1,***-***-3456
+user5@example.com,Charlie Brown,800,5,***-***-7890
+user6@example.com,Daisy Davis,720,3,***-***-2345
+user7@example.com,Edward Miller,680,2,***-***-6789
+user8@example.com,Fiona Wilson,760,4,***-***-0123
+
